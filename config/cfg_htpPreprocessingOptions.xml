@@ -19,6 +19,7 @@
             <opt>35</opt>
             <opt>40</opt>
             <opt>50</opt>
+	    <opt>55</opt>
             <opt>80</opt>
             <opt>100</opt>
             <opt>120</opt>
@@ -26,6 +27,7 @@
         </FilterHigh>
         <Notch1>
             <opt>57 63</opt>
+	    <opt>55 65</opt>
 	    <opt>cleanline</opt>
             <opt>none</opt>
         </Notch1>
@@ -37,6 +39,7 @@
             <opt>250</opt>
             <opt>500</opt>
             <opt>100</opt>
+	    <opt>128</opt>
             <opt>1000</opt>
         </Resample>
         <Rereference>
