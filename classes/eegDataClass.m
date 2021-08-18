@@ -783,7 +783,12 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
                 edfFile = fullfile(folder, subfolder, datafile);
                 
                 EEG = pop_biosig( edfFile );
-                EEG = pop_select( EEG, 'nochannel', [2,32,33]);
+                
+                if EEG.nbchan == 33
+                    EEG = pop_select( EEG, 'nochannel', [2,32,33]);
+                else
+                    EEG = pop_select( EEG, 'nochannel', [2,32]);
+                end
                 
                 try
                 load(o.net_file, 'chanlocs');
