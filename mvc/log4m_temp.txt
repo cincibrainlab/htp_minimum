@@ -1,0 +1,18 @@
+2021-05-14 00:32:40,471 INFO obj.msgout - EEGLAB Found. Path: E:\Research Software\eeglab14\eeglab.m
+2021-05-14 00:32:42,173 INFO obj.msgout - Extended by Brainstorm Function (htpBst Class)
+2021-05-14 00:32:42,279 INFO obj.msgout - Initializing Configuration ...
+2021-05-14 00:32:42,376 INFO obj.msgout - Number of Options Imported: 25
+
+2021-05-14 00:32:42,382 INFO obj.msgout - Electrode Import from config/cfg_htpEegSystems.xml
+2021-05-14 00:32:42,478 INFO obj.msgout - Starting Preset Import from config/cfg_htpPresets.xml
+2021-05-14 00:32:42,579 INFO obj.msgout - config/cfg_htpPresets.xml imported. 11 Presets Loaded.
+2021-05-14 00:32:42,585 INFO obj.msgout - Starting Preset Import from config/cfg_exclude.xml
+2021-05-14 00:32:42,602 INFO obj.msgout - config/cfg_exclude.xml imported. 11 Exclude Reasons Loaded.
+2021-05-14 00:32:42,661 INFO obj.msgout - config/cfg_htpAnalysisPowerBands.xml imported. 2 Power Options Loaded.
+2021-05-14 00:32:42,664 INFO obj.msgout - Electrode Configurations: Loaded.
+2021-05-14 00:32:42,665 INFO obj.msgout - Available Options from config/cfg_htpPreprocessingOptions.xml: Loaded.
+
+2021-05-14 00:32:42,670 INFO createAnalysisMaster - Success.
+2021-05-14 00:32:44,708 INFO obj.msgout - Subjects loaded.
+2021-05-14 00:32:44,810 INFO createAnalysisMaster - CSV: A2104252057_subjTable_htp2bst_Stage4.csv
+2021-05-14 00:32:44,812 INFO obj.msgout - Subjects loaded.
