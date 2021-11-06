@@ -16,11 +16,11 @@
 % step.
 %
 %%% Copyright and Contact Information
-% Copyright © 2019  Cincinnati Children's (Pedapati Lab)
+% Copyright ï¿½ 2019  Cincinnati Children's (Pedapati Lab)
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 % 
 % Contact: ernest.pedapati@cchmc.org
 

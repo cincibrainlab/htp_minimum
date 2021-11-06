@@ -424,12 +424,12 @@ classdef htpBaseMaster < handle & matlab.mixin.SetGet & htpBst
                         str = which('eeglab.m');
                     end
                     obj.msgout(sprintf('EEGLAB Loading. Path: %s', str), 'step_warning');
-                    eeglab;
+                    eeglab nogui;
                     %eeglab nogui;
                     close gcf;
                 end
                 if isempty(eeglabpath)
-                    eeglab;
+                    eeglab nogui;
                     %eeglab nogui;
                     close gcf;
                 end
@@ -438,9 +438,9 @@ classdef htpBaseMaster < handle & matlab.mixin.SetGet & htpBst
                 obj.msg = 'Critical: EEGLAB not found. Please add to MATLAB path, restart HTP.';
                 obj.msgout(obj.msg, 'step_error');
             end
-            evalin('base', 'eeglab');
+            %evalin('base', 'eeglab nogui');
             %evalin('base','eeglab nogui');
-            evalin('base', 'close gcf');
+            %evalin('base', 'close gcf');
         end
         
         %Update htpcfg structure with potentially newly updated fields for
@@ -2270,7 +2270,7 @@ sFiles = bst_process('CallProcess', 'process_select_files_data', [], []);
         end
 
         %CURRENTLY UNUTILIZED
-        function res = assign_auxcsv_sex(o, var)
+        function res = assign_auxcsv_sex(o, csvfile, var)
             varname = 'Sex';
             if nargin < 2
                 o.msgout(sprintf('Warning: No Sex field named.\n'), 'step_warning');

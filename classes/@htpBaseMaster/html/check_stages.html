@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Check Stages</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">Copyright and Contact Information</a></li><li><a href="#4">check_stages</a></li></ul></div><h2 id="1">Usage</h2><p>obj = check_stages( obj, sub )</p><h2 id="2">Parameters</h2><div><ul><li>INPUTS: obj, sub</li></ul></div><div><ul><li>OUTPUTS: obj</li></ul></div><p>The input parameter sub is the array of subjects (RestEEGDataClass objects) passed in and the second optional input parameter if the function is not self_invoked obj is the htpPreprocessMaster object.  The output obj is the updated htpPreprocessMaster object with the stage information for each subject updated.</p><h2 id="3">Copyright and Contact Information</h2><p>Copyright (C) 2020  Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://bitbucket.org/eped1745/htp_stable/src/master/</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="4">check_stages</h2><p>Need to check the stage information for each available subject and ensure that it accurately reflects the latest stage of the preprocessing complete and the next stage to be performed.</p><pre class="codeinput"><span class="keyword">function</span> obj = check_stages( obj, sub )
+  </style></head><body><div class="content"><h1>Check Stages</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">Copyright and Contact Information</a></li><li><a href="#4">check_stages</a></li></ul></div><h2 id="1">Usage</h2><p>obj = check_stages( obj, sub )</p><h2 id="2">Parameters</h2><div><ul><li>INPUTS: obj, sub</li></ul></div><div><ul><li>OUTPUTS: obj</li></ul></div><p>The input parameter sub is the array of subjects (RestEEGDataClass objects) passed in and the second optional input parameter if the function is not self_invoked obj is the htpPreprocessMaster object.  The output obj is the updated htpPreprocessMaster object with the stage information for each subject updated.</p><h2 id="3">Copyright and Contact Information</h2><p>Copyright (C) 2020  Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://github.com/cincibrainlab/htp_minimum</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="4">check_stages</h2><p>Need to check the stage information for each available subject and ensure that it accurately reflects the latest stage of the preprocessing complete and the next stage to be performed.</p><pre class="codeinput"><span class="keyword">function</span> obj = check_stages( obj, sub )
 
 <span class="keyword">try</span>
 
@@ -124,7 +124,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 %
 % Contact: ernest.pedapati@cchmc.org
 

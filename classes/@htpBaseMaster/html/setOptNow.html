@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Set Preprocessing Options for User Selection</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">Copyright and Contact Information</a></li><li><a href="#4">setOptNow</a></li></ul></div><h2 id="1">Usage</h2><p>obj = setOptNow( obj, selection_arr )</p><h2 id="2">Parameters</h2><div><ul><li>INPUTS: obj, selection_arr</li></ul></div><div><ul><li>OUTPUTS: obj</li></ul></div><p>The input parameter selection_arr is the xml of options for the pipeline preprocessing gui fields and the second optional input parameter if the function is not self-invoked is the htpPreprocessMaster object.  The output is the htpPreprocessMaster with the corresponding preprocessing option attributes updated.</p><h2 id="3">Copyright and Contact Information</h2><p>Copyright (C) 2020 Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://bitbucket.org/eped1745/htp_stable/src/master/</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="4">setOptNow</h2><p>Populate the various dropdowns in the options section of the preprocessing pipeline for the user to select desired settings when needed. Need to check length of options to populate to ensure correct assignment of settings options and throw error for mismatch since the settings are not correct</p><pre class="codeinput"><span class="keyword">function</span> obj = setOptNow( obj, selection_arr )
+  </style></head><body><div class="content"><h1>Set Preprocessing Options for User Selection</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">Copyright and Contact Information</a></li><li><a href="#4">setOptNow</a></li></ul></div><h2 id="1">Usage</h2><p>obj = setOptNow( obj, selection_arr )</p><h2 id="2">Parameters</h2><div><ul><li>INPUTS: obj, selection_arr</li></ul></div><div><ul><li>OUTPUTS: obj</li></ul></div><p>The input parameter selection_arr is the xml of options for the pipeline preprocessing gui fields and the second optional input parameter if the function is not self-invoked is the htpPreprocessMaster object.  The output is the htpPreprocessMaster with the corresponding preprocessing option attributes updated.</p><h2 id="3">Copyright and Contact Information</h2><p>Copyright (C) 2020 Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://github.com/cincibrainlab/htp_minimum</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="4">setOptNow</h2><p>Populate the various dropdowns in the options section of the preprocessing pipeline for the user to select desired settings when needed. Need to check length of options to populate to ensure correct assignment of settings options and throw error for mismatch since the settings are not correct</p><pre class="codeinput"><span class="keyword">function</span> obj = setOptNow( obj, selection_arr )
 
 opt = obj.htpcfg.opt;
 optnow = opt;
@@ -118,7 +118,7 @@ obj.htpcfg.optnow = optnow;
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 % 
 % Contact: ernest.pedapati@cchmc.org
 
