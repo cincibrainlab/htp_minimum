@@ -16,10 +16,10 @@
 % updated EEG struct with the cleaned raw data.
 %
 %
-% Copyright © 2020  Cincinnati Children's (Pedapati Lab)
+% Copyright ï¿½ 2020  Cincinnati Children's (Pedapati Lab)
 %
 % This file is part of High Throughput Pipeline (HTP), see 
-% https://bitbucket.org/eped1745/htp_stable/src/master/
+% https://github.com/cincibrainlab/htp_minimum
 % Contact: ernest.pedapati@cchmc.org
 
 classdef CleanRawDataClass

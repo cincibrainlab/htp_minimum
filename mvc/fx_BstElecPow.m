@@ -12,29 +12,29 @@ opchoices.Properties.RowNames = table2cell(opchoices(:,1));
 
 % Select operations to be performed (order matters)
 switch method
-    case 'elec_abspow'
+    case 'scalpAbsPow755'
         opchoices.action = [true; false; false; false; false];
     case 'elec_abspownorm'
         opchoices.action = [true; false; true; false; false];
         cfg.overwrite = 1;
-    case 'elec_relpow'
+    case 'scalpRelPow765'
         opchoices.action = [true; false; false; true; false];
         cfg.overwrite = 1;
-    case 'elec_FFTabs'
+    case 'scalpAbsFFT775'
         opchoices.action = [false; true; false; false; false];
     case 'elec_FFTabsnorm'
         opchoices.action = [false; true; true; false; false];
         cfg.overwrite = 1;
-    case 'elec_FFTrel'
+    case 'scalpRelFFT785'
         opchoices.action = [false; true; false; true; false];
         cfg.overwrite = 1;
-    case 'source_abspow'
+    case 'sourceAbsPow855' 
         opchoices.action = [true; false; false; false; false];
     case 'source_abspownorm'
         opchoices.action = [true; false; true; false; false];
         sFilesPow = sFilesRecordings; % precalculated
         cfg.overwrite = 1;
-    case 'source_relpow'
+    case 'sourceRelPow865'
         opchoices.action = [true; false; false; true; false];
         sFilesPow = sFilesRecordings; % precalculated
         cfg.overwrite = 1;

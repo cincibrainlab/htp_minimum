@@ -21,7 +21,7 @@
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 % 
 % Contact: ernest.pedapati@cchmc.org
 
@@ -53,4 +53,3 @@ opt.pca_rank        = char(obj.htpcfg.optnow.Stage3_PCA);
 opt.comp_select     = obj.htpcfg.optnow.Stage3_CompSelect;
 opt.icatype         = obj.htpcfg.optnow.Stage3_IcaType{1};
 
-end

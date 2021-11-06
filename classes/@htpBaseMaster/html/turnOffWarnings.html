@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Turn Off Warnings</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">Copyright and Contact Information</a></li><li><a href="#4">turnOffWarnings</a></li></ul></div><h2 id="1">Usage</h2><p>results = turnOffWarnings()</p><h2 id="2">Parameters</h2><div><ul><li>INPUTS:</li></ul></div><div><ul><li>OUTPUTS: results</li></ul></div><p>The function is self-invoked by an htpPreprocessMaster object thus there there are not input parameters.  The output is a boolean indicating success in terms of turning off the unnecessary messages.</p><h2 id="3">Copyright and Contact Information</h2><p>Copyright &copy; 2020  Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://bitbucket.org/eped1745/htp_stable/src/master/</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="4">turnOffWarnings</h2><p>Deactivation of the warnings that might overfill the command console and pipeline output window. Warnings may not lead to fatal error therefore it is necessary to keep the pipeline console clean for primarily preprocessing related messages only.</p><pre class="codeinput"><span class="keyword">function</span> results = turnOffWarnings()
+  </style></head><body><div class="content"><h1>Turn Off Warnings</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">Copyright and Contact Information</a></li><li><a href="#4">turnOffWarnings</a></li></ul></div><h2 id="1">Usage</h2><p>results = turnOffWarnings()</p><h2 id="2">Parameters</h2><div><ul><li>INPUTS:</li></ul></div><div><ul><li>OUTPUTS: results</li></ul></div><p>The function is self-invoked by an htpPreprocessMaster object thus there there are not input parameters.  The output is a boolean indicating success in terms of turning off the unnecessary messages.</p><h2 id="3">Copyright and Contact Information</h2><p>Copyright &copy; 2020  Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://github.com/cincibrainlab/htp_minimum</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="4">turnOffWarnings</h2><p>Deactivation of the warnings that might overfill the command console and pipeline output window. Warnings may not lead to fatal error therefore it is necessary to keep the pipeline console clean for primarily preprocessing related messages only.</p><pre class="codeinput"><span class="keyword">function</span> results = turnOffWarnings()
 warning( <span class="string">'off'</span>, <span class="string">'MATLAB:printf:BadEscapeSequenceInFormat'</span>);
 warning( <span class="string">'off'</span>, <span class="string">'MATLAB:MKDIR:DirectoryExists'</span>);
 warning( <span class="string">'off'</span>, <span class="string">'MATLAB:xlswrite:AddSheet'</span>);
@@ -100,7 +100,7 @@ results = 1;
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 % 
 % Contact: ernest.pedapati@cchmc.org
 

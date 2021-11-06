@@ -1,10 +1,10 @@
-%Class:
+%Class: 
 % Use as
 %    define EEG system in config/cfg_htpEeegSystems.txt
 %    see [ electrodeConfigClass( n ) ] = htp_readEegSystems( filename )
 %     for text file format and import instructions.
 %
-% Copyright © 2019  Cincinnati Children's (Pedapati Lab)
+% Copyright ï¿½ 2019  Cincinnati Children's (Pedapati Lab)
 %
 %Methods:
 % electrodeConfigClass
@@ -58,6 +58,9 @@ classdef electrodeConfigClass < handle
         net_bst_filetype;
         net_surficeMni;
         
+        bst_chanlabel;
+        bst_chanindex;
+        
     end
     
     methods
@@ -90,6 +93,20 @@ classdef electrodeConfigClass < handle
             o.net_bst_channelreplace = xmlData.bst_channelreplace;
             o.net_bst_filetype = xmlData.bst_filetype;
             o.net_surficeMni = xmlData.surficeMNI;
+        end
+        
+        % added 4/26/2021 Get & Set Methods for BST functionality
+        function o = setBstChanIndex(o, value)
+            o.bst_chanindex = value;
+        end
+        function value = getBstChanIndex(o)
+            value = o.bst_chanindex;
+        end
+        function o = setBstChanLabel(o, value)
+            o.bst_chanlabel = value;
+        end
+        function value = getBstChanLabel(o)
+            value = o.bst_chanlabel;
         end
         
     end

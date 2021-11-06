@@ -625,6 +625,9 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
             net_name = o.net_name;
             
             switch net_name
+
+                case 'SET'
+                    o.getRawSet;
                 
                 case 'EGI32'
                     
@@ -712,6 +715,13 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
         %original raw file as well as loading accurate 3d locations. 
         %Utilized when the user has selected their net to be 
         %'EGI Hydrocel 32', 'EGI Hydrocel 64', or 'EGI Hydrocel 128'. 
+
+        function o = getRawSet( o )
+            o.EEG = pop_loadset(o.filename.raw, fullfile(o.pathdb.raw, o.subj_subfolder));
+            o.EEG = eeg_checkset( o.EEG );
+            o.storeDataset(o.EEG, o.pathdb.raw, o.subj_subfolder, o.filename.postcomps);
+
+        end
         function o = getRawEGI( o )
             
             try
@@ -2275,6 +2285,11 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
             elseif strcmp(stage, 'source')
                 setfile = o.filename.postcomps;
                 path = fullfile(o.pathdb.source,o.subj_subfolder);
+            
+
+            elseif strcmp(stage, 'signal')
+                setfile = o.filename.postcomps;
+                path = fullfile(o.pathdb.signal,o.subj_subfolder);
                 
             end
             
@@ -2520,17 +2535,21 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
         
         %Conversion of eventless, resting data to singular, continuous epoch 
         function o = epoch2cont( o )
-            
+            % revised 9/30/2021
             EEG = o.EEG;
-            EEG.data = reshape(EEG.data, size(EEG.data,1), size(EEG.data,2)*size(EEG.data,3));
-            EEG.pnts   = size(EEG.data,2);
-            EEG.trials = 1;
-            EEG.event = [];
-            EEG.epoch = [];
-            EEG.urevent = [];
+            if length(size(EEG.data)) > 2
+                % starting dimensions
+                [nchans, npnts, ntrial] = size(EEG.data);
+                EEG.data = double(reshape(EEG.data, nchans, npnts*ntrial));
+                EEG.pnts = npnts*ntrial;
+                EEG.times = 1:1/EEG.srate:(size(EEG.data,2) / EEG.srate) * 1000;
+            else
+                fprintf('No trial dimension present in data');
+            end
             
-            o.EEG = eeg_checkset( EEG );
-                       
+            EEG = eeg_checkset( EEG );
+            EEG.data = double(EEG.data);
+            o.EEG = EEG;
         end
         
         %CURRENTLY UNUTILIZED
@@ -2612,7 +2631,7 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
             
             EEG = pop_saveset( EEG, 'filename', savefile );
             
-            o.msgout(sprintf('Storing Dataset: %s\n', savefile), 'proc_complete');
+           % o.msgout(sprintf('Storing Dataset: %s\n', savefile), 'proc_complete');
             
             o.EEG = EEG;
             
@@ -4294,6 +4313,9 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
         %they may need to during, or after, preprocessing.
         function obj = msgout( obj, str, msgtype )
             
+            obj.htpcfg.logger = ...
+    log4m.getLogger();
+
             obj.msg = str;
             
             switch msgtype
@@ -4541,6 +4563,101 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
             
             
         end
+        
+        %Trims EEG epochs to number of consecutive trials. Originally designed
+        %for mvarClass.
+        function o = selectConsecutiveEpochs(o, num_of_trials )
+            % num_of_trials= 30;
+            EEG = o.EEG;
+            
+            assert(num_of_trials <= EEG.trials, ...
+                'Error: Requested More Trials than Available.')
+            selTrialIdx = 1 : num_of_trials;
+            EEG = pop_select(EEG, 'trial', selTrialIdx );
+            EEG.etc.selTrialGed = selTrialIdx;
+            
+            o.EEG = EEG;
+        end
+        %Return logical if number of desired epochs are present in the
+        %current EEG set file.
+        
+        function res = areRequiredEpochsPresent(o, desired_epochs)
+            EEG = o.EEG;
+            res = EEG.trials;
+            if res >= desired_epochs, res = true; else, res= false; end
+        end
+        function [res,obj] = filtfilt( obj, data, srate, filter_lo, filter_hi, fwhm)
+            TRANSWIDTHRATIO = 0.25;
+            filter_lo        = lowerBound; % lower band Hz
+            filter_hi        = upperBound; % higher bands Hz
+            edgeArray = sort([filter_lo filter_hi]);
+            nq = srate / 2;
+            
+            
+            maxTBWArray = edgeArray; % Band-/highpass
+            maxTBWArray(end) = nq - edgeArray(end);
+            maxDf = min(maxTBWArray);
+            df = min([max([edgeArray(1) * TRANSWIDTHRATIO 2]) maxDf]);
+            
+               df = min([max([edgeArray(1) * TRANSWIDTHRATIO 2]) maxDf]);
+                filtOrder = 3.3 / (df / obj.currentSampleRate); % Hamming window
+                filtOrder = ceil(filtOrder / 2) * 2; % Filter order must be even.
+                filt_order = filtOrder*3;
+                
+                kernal = fir1(filter_order, [lowerBound/nq upperBound/nq]);
+
+            
+            res = ...
+                pop_eegfiltnew( EEG, f-fwhm, f+fwhm, [], 0 );
+            %eegplot(obj.filtData.data)
+            %filterFGx(EEG.data,EEG.srate,f,fwhm);
+            fprintf('\n\nSignal Filtered @ %2.2f Hz (fwhm: %2.2f)', f, fwhm);
+            fprintf('\nTo see signal use method plotLastFiltTimeSeries.\n\n');
+        end
+        function filt_order = createFiltOrder(obj, lowerBound, upperBound)
+            % inputs
+            TRANSWIDTHRATIO = 0.25;
+            filter_lo        = lowerBound; % lower band Hz
+            filter_hi        = upperBound; % higher bands Hz
+            edgeArray = sort([filter_lo filter_hi]);
+            nq = obj.currentSampleRate / 2;
+            
+            maxTBWArray = edgeArray; % Band-/highpass
+            maxTBWArray(end) = nq - edgeArray(end);
+            maxDf = min(maxTBWArray);
+            df = min([max([edgeArray(1) * TRANSWIDTHRATIO 2]) maxDf]);
+            
+            if ~exist('filtOrder','var')
+                df = min([max([edgeArray(1) * TRANSWIDTHRATIO 2]) maxDf]);
+                filtOrder = 3.3 / (df / obj.currentSampleRate); % Hamming window
+                filtOrder = ceil(filtOrder / 2) * 2; % Filter order must be even.
+                filt_order = filtOrder*3;
+            else
+            end
+        end
+        function kernal = constructFilterKernal(obj, lowerBound, upperBound, filterOrder)
+            if nargin < 2
+                % GED filter settings
+                lowerBound = 5; % lower theta bound in Hz
+                upperBound = 7; % upper theta bound in Hz
+                filter_order = 3000; % higher order is better frequency resolution, poorer temporal resolution
+            end
+            
+            nq = obj.currentSampleRate / 2;
+            filter_order = obj.createFiltOrder(lowerBound, upperBound);
+            
+            % calculate filt order for bandpass only
+            % adapted from pop_eegfiltnew (EEGLAB)
+            
+            %filter_order = 3000;
+            kernal = fir1(filter_order, [lowerBound/nq upperBound/nq]);
+            obj.lastFilterKernal = kernal;
+            obj.lastFilterOrder = filter_order;
+            obj.lastFilterLowerBound = lowerBound;
+            obj.lastFilterUpperBound = upperBound;
+            
+        end
+        
         
         %CURRENTLY UNUTILIZED
         function latency = getFirstEventLatency( o )

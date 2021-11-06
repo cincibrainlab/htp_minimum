@@ -18,11 +18,11 @@
 % the file name of the results csv for the subject.
 %
 %%% Copyright and Contact Information
-% Copyright © 2020  Cincinnati Children's (Pedapati Lab)
+% Copyright ï¿½ 2020  Cincinnati Children's (Pedapati Lab)
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 %
 % Contact: ernest.pedapati@cchmc.org
 
@@ -168,6 +168,7 @@ end
 %objSaveFile = fullfile([saveFN '.mat']);
 objSaveFile = fullfile([saveFN '.mat']);
 obj.htpcfg.csvfile = csvfile;
+obj.htpcfg.matfile = objSaveFile;
 arrayfun(@( s ) s.unloadDataset, sub, 'UniformOutput',false );
 arrayfun(@( s ) s.setCsv( csvfile ), sub, 'UniformOutput',false );
 arrayfun(@( s ) s.setMat( objSaveFile ), sub, 'UniformOutput',false );

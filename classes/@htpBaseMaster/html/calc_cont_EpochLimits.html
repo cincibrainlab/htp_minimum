@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>calc_cont_EpochLimits</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">calc_cont_EpochLimits</a></li></ul></div><h2 id="1">Usage</h2><p>limits = calc_cont_EpochLimits( obj )</p><h2 id="2">Parameters</h2><p>The optional input parameter if the function is not self-invoked obj is the htpPreprocessMaster object that is passed in if the function is not self-invoked.  The output are the calculated limits for the epochs of the data.</p><p>Copyright (C) 2020 Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://bitbucket.org/eped1745/htp_stable/src/master/</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="3">calc_cont_EpochLimits</h2><p>Calculate the epoch lengths to be used for the EEG data for each subject based upon preprocessing designated options.  Based upon the epoch limit option, various calculation paths for the epochs are taken.</p><pre class="codeinput"><span class="keyword">function</span> limits = calc_cont_EpochLimits( obj )
+  </style></head><body><div class="content"><h1>calc_cont_EpochLimits</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">calc_cont_EpochLimits</a></li></ul></div><h2 id="1">Usage</h2><p>limits = calc_cont_EpochLimits( obj )</p><h2 id="2">Parameters</h2><p>The optional input parameter if the function is not self-invoked obj is the htpPreprocessMaster object that is passed in if the function is not self-invoked.  The output are the calculated limits for the epochs of the data.</p><p>Copyright (C) 2020 Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://github.com/cincibrainlab/htp_minimum</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="3">calc_cont_EpochLimits</h2><p>Calculate the epoch lengths to be used for the EEG data for each subject based upon preprocessing designated options.  Based upon the epoch limit option, various calculation paths for the epochs are taken.</p><pre class="codeinput"><span class="keyword">function</span> limits = calc_cont_EpochLimits( obj )
 
 epochLength = str2double(obj.htpcfg.optnow.(<span class="string">'Stage2_EpochLength'</span>));
 epochLimits = obj.htpcfg.optnow.(<span class="string">'Stage2_EpochLimits'</span>);
@@ -109,7 +109,7 @@ epochLimits = obj.htpcfg.optnow.(<span class="string">'Stage2_EpochLimits'</span
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 % 
 % Contact: ernest.pedapati@cchmc.org
 

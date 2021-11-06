@@ -8,7 +8,7 @@
  Copyright (C) 2019  Cincinnati Children's (Pedapati Lab)
 
  This file is part of High Throughput Pipeline (HTP), see 
- https://bitbucket.org/eped1745/htp_stable/src/master/
+ https://github.com/cincibrainlab/htp_minimum
  Contact: ernest.pedapati@cchmc.org
 -->
 <list>
@@ -203,5 +203,22 @@
       <bst_channelreplace>71</bst_channelreplace>
       <bst_filetype>EEG-EEGLAB</bst_filetype>
       <surficeMNI>128_chanlocsMNI.txt</surficeMNI>
+   </listitem>
+    <listitem>
+      <net_displayname>EEGLAB_SET</net_displayname>
+      <net_name>SET</net_name>
+      <net_file>c</net_file>
+      <net_graphic></net_graphic>
+      <net_filter>*.set</net_filter>
+      <net_nochans></net_nochans>
+      <net_regions>
+      </net_regions>
+      <hdmfile>standard_vol.mat</hdmfile>
+      <mrifile>standard_mri.mat</mrifile>
+      <elcfile></elcfile>
+      <coord_transform></coord_transform>
+      <bst_channelreplace></bst_channelreplace>
+      <bst_filetype>EEG-EEGLAB</bst_filetype>
+      <surficeMNI></surficeMNI>
    </listitem>
 </list>

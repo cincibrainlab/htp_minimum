@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Tool to Save Subject</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">Copyright and Contact Information</a></li><li><a href="#4">tool_saveSubject</a></li></ul></div><h2 id="1">Usage</h2><p>tool_saveSubject( obj, s, stage )</p><h2 id="2">Parameters</h2><p>The input parameters are s which is a subject object (RestEegDataClass object), stage is the string representing the next stage of preprocessing and the third optional input parameter if the function is not self-invoked obj is the htpPreprocessMaster object.  There is no output, instead the subject, input s parameter, is saved to the designated preica file directory.</p><h2 id="3">Copyright and Contact Information</h2><p>Copyright (C) 2020 Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://bitbucket.org/eped1745/htp_stable/src/master/</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="4">tool_saveSubject</h2><p>Obtain the various attributes needed to save the subject such as epoch type, stage information, and file paths, then save the subject and its information into the preica directory to use in further steps of preprocessing.</p><pre class="codeinput"><span class="keyword">function</span> tool_saveSubject( obj, s, stage)
+  </style></head><body><div class="content"><h1>Tool to Save Subject</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">Copyright and Contact Information</a></li><li><a href="#4">tool_saveSubject</a></li></ul></div><h2 id="1">Usage</h2><p>tool_saveSubject( obj, s, stage )</p><h2 id="2">Parameters</h2><p>The input parameters are s which is a subject object (RestEegDataClass object), stage is the string representing the next stage of preprocessing and the third optional input parameter if the function is not self-invoked obj is the htpPreprocessMaster object.  There is no output, instead the subject, input s parameter, is saved to the designated preica file directory.</p><h2 id="3">Copyright and Contact Information</h2><p>Copyright (C) 2020 Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://github.com/cincibrainlab/htp_minimum</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="4">tool_saveSubject</h2><p>Obtain the various attributes needed to save the subject such as epoch type, stage information, and file paths, then save the subject and its information into the preica directory to use in further steps of preprocessing.</p><pre class="codeinput"><span class="keyword">function</span> tool_saveSubject( obj, s, stage)
 
 <span class="keyword">try</span>
 EpochType = char(obj.htpcfg.optnow.Stage2_EpochType);
@@ -126,7 +126,7 @@ s.storeDataset( save_eeg, save_path, save_subfolder, save_filename);
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 % 
 % Contact: ernest.pedapati@cchmc.org
 

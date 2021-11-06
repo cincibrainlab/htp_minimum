@@ -66,7 +66,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Tool to Clean Epochs</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">tool_cleanEpochs</a></li></ul></div><h2 id="1">Usage</h2><p>s = tool_cleanEpochs( obj, s )</p><h2 id="2">Parameters</h2><div><ul><li>INPUTS: obj, s</li></ul></div><div><ul><li>OUTPUTS: s</li></ul></div><p>The input parameters are s which is a subject object (RestEegDataClass object) and the second optional input parameter if the function is not self-invoked obj is the htpPreprocessMaster object.  The output is the subject object with the cleaned epochs stored within their respective struct.</p><p>Copyright (C) 2020 Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://bitbucket.org/eped1745/htp_stable/src/master/</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="3">tool_cleanEpochs</h2><p>Determine mode of cleaning, epoch length, and epoch limits, and proceed to clean the epochs to be correctly utilized for later preprocessing steps. The cleaned epochs are stored for the subject and returned upon completion.</p><pre class="codeinput"><span class="keyword">function</span>  s = tool_cleanEpochs( obj, s )
+  </style></head><body><div class="content"><h1>Tool to Clean Epochs</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Usage</a></li><li><a href="#2">Parameters</a></li><li><a href="#3">tool_cleanEpochs</a></li></ul></div><h2 id="1">Usage</h2><p>s = tool_cleanEpochs( obj, s )</p><h2 id="2">Parameters</h2><div><ul><li>INPUTS: obj, s</li></ul></div><div><ul><li>OUTPUTS: s</li></ul></div><p>The input parameters are s which is a subject object (RestEegDataClass object) and the second optional input parameter if the function is not self-invoked obj is the htpPreprocessMaster object.  The output is the subject object with the cleaned epochs stored within their respective struct.</p><p>Copyright (C) 2020 Cincinnati Children's (Pedapati Lab)</p><p>This file is part of High Throughput Pipeline (HTP)</p><p>See https://github.com/cincibrainlab/htp_minimum</p><p>Contact: <a href="mailto:ernest.pedapati@cchmc.org">ernest.pedapati@cchmc.org</a></p><h2 id="3">tool_cleanEpochs</h2><p>Determine mode of cleaning, epoch length, and epoch limits, and proceed to clean the epochs to be correctly utilized for later preprocessing steps. The cleaned epochs are stored for the subject and returned upon completion.</p><pre class="codeinput"><span class="keyword">function</span>  s = tool_cleanEpochs( obj, s )
 
 htpcfg = obj.htpcfg;
 opt = htpcfg.optnow;
@@ -103,7 +103,7 @@ s.cleanEpochs;
 %
 % This file is part of High Throughput Pipeline (HTP)
 % 
-% See https://bitbucket.org/eped1745/htp_stable/src/master/
+% See https://github.com/cincibrainlab/htp_minimum
 % 
 % Contact: ernest.pedapati@cchmc.org
 
