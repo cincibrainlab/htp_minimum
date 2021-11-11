@@ -1,5 +1,5 @@
-function resultTable = fx_customStatReportSigPowerPerSubject( sStats, sFiles )
-[subnames, groupids] = fx_customGetSubNames(  sFiles );
+function resultTable = fx_customStatReportSigPowerPerSubject( p, sStats, sFiles )
+[subnames, groupids] = fx_customGetSubNames(  sFiles, p, 'default' );
 
 roi_res = {};
 

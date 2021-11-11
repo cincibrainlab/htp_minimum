@@ -87,6 +87,13 @@ switch stage
         desc = 'Stage1';
         msg = 'ONE';
         outputrowstage = 'import';
+
+    case 'signal'
+        
+        desc = 'Signal';
+        msg = 'Signal';
+        outputrowstage = 'signal';
+        
         
     case 'combined'
         

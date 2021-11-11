@@ -2250,6 +2250,13 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
             
         end
         
+        function o = loadSource(o, fname)
+            setfile = fname;
+            path = fullfile(o.pathdb.signal,o.subj_subfolder);
+            o.EEG = pop_loadset( 'filename', setfile, 'filepath', path);
+            o.EEG  = eeg_checkset( o.EEG );
+        end
+
         %Load the dataset for the specified stage via the stage input
         %parameter, and the setfile and path are used to load the dataset
         %to proceed with the current stage of preprocessing.

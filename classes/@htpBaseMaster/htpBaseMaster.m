@@ -169,7 +169,11 @@ classdef htpBaseMaster < handle & matlab.mixin.SetGet & htpBst
 
             obj.set_user('');
             obj.set_study_title('');
+            try
             obj.htpcfg.logger = log4m.getLogger(fullfile(obj.htpcfg.scriptPath, 'local/logfiles/', obj.htpcfg.logfile)); 
+            catch
+                fprintf("Unable to create logfile. Skipping.\n");
+            end
             obj.start_EegLab_If_Needed;
             obj.msgout('Extended by Brainstorm Function (htpBst Class)');
 
