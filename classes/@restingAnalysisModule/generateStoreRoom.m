@@ -35,7 +35,8 @@
                 intervals = [intervals, pnt(k,1):pnt(k,2)];
             end
             freq = obj.freqTable;
-            EEG.rel_power = NaN*ones(size(EEG.abs_power));EEG.rel_power = EEG.rel_power(1:pnt(end,2),:,:);
+            EEG.rel_power = NaN*ones(size(EEG.abs_power));
+            EEG.rel_power = EEG.rel_power(1:pnt(end,2),:,:);
             for i = 1:EEG.nbchan
                 for j = 1:EEG.trials 
 

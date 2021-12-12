@@ -221,4 +221,21 @@
       <bst_filetype>EEG-EEGLAB</bst_filetype>
       <surficeMNI></surficeMNI>
    </listitem>
+       <listitem>
+      <net_displayname>BESA_DAT</net_displayname>
+      <net_name>BESADAT</net_name>
+      <net_file>chanfiles/GSN-HydroCel-129_new.sfp</net_file>
+      <net_graphic></net_graphic>
+      <net_filter>*.dat</net_filter>
+      <net_nochans></net_nochans>
+      <net_regions>
+      </net_regions>
+      <hdmfile>standard_vol.mat</hdmfile>
+      <mrifile>standard_mri.mat</mrifile>
+      <elcfile></elcfile>
+      <coord_transform></coord_transform>
+      <bst_channelreplace></bst_channelreplace>
+      <bst_filetype>BESA-DAT</bst_filetype>
+      <surficeMNI></surficeMNI>
+   </listitem>
 </list>

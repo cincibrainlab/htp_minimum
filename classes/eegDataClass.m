@@ -701,6 +701,43 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
             
             
         end
+
+        %Use as:
+        %       [ o ] = getRawBesaDat(o)
+        %
+        %   The input, o if the function is not self-invoked, is the
+        %   eegDataClass object.  The output is the
+        %   eegDataClass object with the DAT data imported and the
+        %   appropriate corresponding fields updated.
+        %
+        %Import function for raw BESA DAT datasets that is utilized to
+        %correctly import and parse necessary data found within the
+        %original raw file. 
+
+         function o = getRawBesaDat( o, cfg )
+            
+            EEG = pop_importdata(...
+                'dataformat','float32le',...
+                'nbchan',cfg.number_channels,...
+                'data', cfg.filename,...
+                'setname', cfg.setname, ...
+                'srate', cfg.srate,...
+                'pnts',cfg.points_per_trial,...
+                'xmin',cfg.xmin,...
+                'chanlocs',cfg.chanlocs_file);
+         
+            EEG = readegilocs2(EEG,cfg.chanlocs_file);
+            
+            EEG.filename = o.filename.postcomps;
+            EEG.filepath = savepath;
+            EEG.subject  = o.subj_basename;
+            EEG.group    = o.subj_subfolder;
+            EEG.condition = o.subj_condition;
+            EEG.comments  = '';
+            
+            o.EEG = EEG;
+            
+        end
         
         %Use as:
         %       [ o ] = getRawEGI(o)
@@ -1468,13 +1505,18 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
                 case 'chirp'
                     s={obj.EEG.event.type};
                     eventTypes=unique(s,'sorted');
-                    obj.EEG = pop_epoch( obj.EEG, eventTypes,  obj.proc_contEpochLimits );
+                    obj.EEG = pop_epoch( obj.EEG, {  }, [-0.5        2.75]);
+                    
+                    %obj.EEG = pop_epoch( obj.EEG, eventTypes,  obj.proc_contEpochLimits );
                     %EEG = pop_epoch( EEG, All_STIM, vEPOCHERP, 'newname', 'Epochs', 'epochinfo', 'yes');
                     obj.EEG                         = eeg_checkset( obj.EEG );
                     
-                    
+                    %EEG = pop_epoch( EEG, {  }, [-0.5        2.75], 'newname', 'D0179_chirp-ST_postcomp.set epochs', 'epochinfo', 'yes');
+
             end
         end
+
+        
         
         %Use as:
         %       [ obj ] = outputrow(obj, stage)
@@ -2297,7 +2339,12 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
             elseif strcmp(stage, 'signal')
                 setfile = o.filename.postcomps;
                 path = fullfile(o.pathdb.signal,o.subj_subfolder);
-                
+
+            elseif strcmp(stage, 'mne')
+                setfile = o.filename.postcomps;
+                setfile = strrep(setfile, '.set', '_MN_EEG_Constr_2018.set');
+                path = fullfile(o.pathdb.signal,o.subj_subfolder);
+
             end
             
             o.EEG = pop_loadset( 'filename', setfile, 'filepath', path);
@@ -4723,6 +4770,24 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
        
         %CURRENTLY UNUTILIZED
         function o = test(o )
+        end
+        
+    end
+
+     methods % spectral event estimation toolbox
+        
+        function mat = se_exportTrialsByChanName( o, channame, samplesPerTrial)
+            
+            if isempty(o.EEG)
+               fprintf('SE: No EEG dataset loaded');
+            else
+               
+               chanIdx = strcmp(channame, {o.EEG.chanlocs.labels});
+               tmpmat = o.EEG.data(chanIdx, :);
+               mat = reshape(tmpmat, samplesPerTrial, []);
+               
+            end
+            
         end
         
     end

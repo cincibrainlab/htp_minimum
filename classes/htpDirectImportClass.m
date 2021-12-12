@@ -1,6 +1,7 @@
 classdef htpDirectImportClass < handle
     properties
         am   % htpPreprocessMaster
+        cfg; % additional import parameters
     end
 
     methods
@@ -27,6 +28,10 @@ classdef htpDirectImportClass < handle
                     o.am.htpcfg.chanNow.net_filter = o.am.htpcfg.chaninfo(value).net_filter;
             end
         end
+
+        function o = setImportParameters( o, cfg )
+            o.cfg = cfg;
+        end
         function o = preprocess_direct( o )
             % stage assigment for CSV
             stage_last = 'raw';
@@ -51,17 +56,38 @@ classdef htpDirectImportClass < handle
 
             for i = 1 : totalsubs
                 s = sub(i);
-                s.EEG = pop_loadset(s.filename.raw, fullfile(s.pathdb.raw, s.subj_subfolder));
+
+                % select import algo
+                switch o.am.htpcfg.chanNow.net_filter
+                    case '*.set'
+                        s.EEG = pop_loadset(s.filename.raw, fullfile(s.pathdb.raw, s.subj_subfolder));
+                    case '*.dat'
+                        o.cfg.filename = fullfile(s.pathdb.raw, s.subj_subfolder, s.filename.raw);
+                        o.cfg.setname = s.subj_basename;
+                        s.getRawBesaDat(o.cfg);
+                        s.EEG = pop_select(s.EEG, 'nochannel', 129);
+                end
+                
+                % optional epooching
+                try
+                    switch o.cfg.condition
+                        case 'chirp'
+                            s.EEG = pop_epoch( s.EEG, {  }, [-0.5        2.75]);
+                        otherwise
+                    end
+                catch
+                    disp("WARNING: No cfg condition set. Defaulting to Rest.")
+                end
+
                 s.EEG = eeg_checkset( s.EEG );
                 s.proc_state = 'postcomps';
                 s.storeDataset(s.EEG, s.pathdb.postcomps, s.subj_subfolder, s.filename.postcomps);
                 s.unloadDataset;
                 s.outputRow( stage_next );
                 sub(i) = s;
+                fprintf('Completed Import (%d of %d): %s\n', i, totalsubs, s.subj_basename);
             end
-
                 o.am.sub = sub;
-
             try
                 o.am.createResultsCsv(o.am.sub, 'postcomps','Default');
             catch
