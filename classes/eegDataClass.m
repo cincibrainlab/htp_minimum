@@ -860,7 +860,7 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
                 
                 EEG = eeg_checkset(EEG);
                 %EEG = eeg_checkchanlocs(EEG);
-                EEG = pop_select( EEG, 'nochannel', [2,32]);
+                EEG = pop_select( EEG, 'nochannel', [31,32]);
                 for i = 1 : EEG.nbchan
                     
                     EEG.chanlocs( i ).labels = jsonData.sapiens_base.biointerface_map.ntv_chan_name(i);
@@ -868,17 +868,26 @@ classdef (ConstructOnLoad = true) eegDataClass < handle  & restingAnalysisModule
                     EEG.chanlocs( i ).urchan = jsonData.sapiens_base.biointerface_map.ntv_chan_idx(i);
                 
                 end
-                EEG = eeg_checkchanlocs(EEG);
-                try
-                load(o.net_file, 'chanlocs');
-                catch
-                   o.msgout('mea3d.mat file missing', 'proc_error'); 
-                end
-                clear jsonData;
-                chanlocs(31) = [];
+%                 EEG = eeg_checkchanlocs(EEG);
+%                 try
+%                 load(o.net_file, 'chanlocs');
+%                 catch
+%                    o.msgout('mea3d.mat file missing', 'proc_error'); 
+%                 end
+%                 clear jsonData;
+%                 chanlocs(31) = [];
                 %EEG = pop_select( EEG, 'nochannel', [2,32]);
                 for i = 1 : numel(chanlocs)
-                
+                    
+                    EEG.chanlocs(i).theta       = jsonData.sapiens_base.biointerface_map
+                    EEG.chanlocs(i).radius      = jsonData.sapiens_base.biointerface_map
+                    EEG.chanlocs(i).X           = jsonData.sapiens_base.biointerface_map.site_ctr_x ./ 1000;
+                    EEG.chanlocs(i).Y           = jsonData.sapiens_base.biointerface_map.site_ctr_y ./ 1000;
+                    EEG.chanlocs(i).Z           = jsonData.sapiens_base.biointerface_map.site_ctr_z ./ 1000;
+                    EEG.chanlocs(i).sph_theta   = jsonData.sapiens_base.biointerface_map
+                    EEG.chanlocs(i).sph_phi     = jsonData.sapiens_base.biointerface_map
+                    EEG.chanlocs(i).sph_radius  = jsonData.sapiens_base.biointerface_map 
+
                     EEG.chanlocs(i).theta       = chanlocs(i).theta;
                     EEG.chanlocs(i).radius      = chanlocs(i).radius;
                     EEG.chanlocs(i).X           = chanlocs(i).X;
