@@ -93,11 +93,12 @@
             <opt>0 to + length</opt>
 		</EpochLimits>
 		<EventLimits>
-            		<opt>-500 4000</opt>
+            <opt>-500 4000</opt>
+            <opt>-500 2750</opt>
             <opt>-500 800</opt>
 			<opt>-5000 2700</opt>
 			<opt>-400 400</opt>
-            		<opt>-400 700</opt>
+            <opt>-400 700</opt>
 			<opt>-1000 1000</opt>		
 			<opt>-750 3000</opt>	
 		</EventLimits>

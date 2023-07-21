@@ -130,7 +130,9 @@ if strcmp(obj.htpcfg.optnow.Stage2_CleanMode, 'FullAuto')
             
             s.openDataset(importdir, s.subj_subfolder, s.filename.import);
 
-            s.trim_edges(10);
+            if strcmp(opt.epoch_type, 'Rest') == 1
+                s.trim_edges(10);
+            end
 
             s.autoclean;
 
@@ -184,8 +186,10 @@ if strcmp(obj.htpcfg.optnow.Stage2_CleanMode, 'Manual') || strcmp(obj.htpcfg.opt
                 
                 s.openDataset(obj.htpcfg.pathdb.import, s.subj_subfolder, s.filename.import);
 
-                s.trim_edges(10); 
-
+                
+                if strcmp(opt.epoch_type, 'Rest') == 1
+                    s.trim_edges(10); 
+                end
                 
                 if strcmp(obj.htpcfg.optnow.Stage2_CleanMode, 'FullAuto')
                     s.autoclean;

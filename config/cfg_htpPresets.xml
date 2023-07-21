@@ -273,6 +273,25 @@
 			<DipfitCalc>Off</DipfitCalc>
 		</Settings>
 </Study>
+<Study>
+    <Title>Auditory Chirp</Title>
+    <Code>Chirp</Code>
+    <Net>EGI128</Net>
+        <Settings>
+            <FilterLow>0.5</FilterLow>
+            <FilterHigh>120</FilterHigh>
+            <Notch1>57 63</Notch1>
+            <Resample>1000</Resample>
+            <MergeFiles>No</MergeFiles>
+            <EpochType>Event</EpochType>
+            <EpochLimits>- to + length</EpochLimits>
+            <EventLimits>-500 2750</EventLimits>
+            <EventRemoveBaseline>No</EventRemoveBaseline>
+            <EventBaseline>-500 0</EventBaseline>
+        </Settings>
+</Study>
+    
+    
 
 
 </PresetOptions>
